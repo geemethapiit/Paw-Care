@@ -1,0 +1,62 @@
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Dashboard') }}
+        </h2>
+    </x-slot>
+
+    <div class="flex h-screen">
+        <x-sidebar />
+
+
+    <div class="container">
+        <div class="form-container">
+            <h3 class="form-title">Edit Medical Record</h3>
+
+
+            <form action="{{ route('medical-records.update', $record->id) }}" method="POST">
+                @csrf
+                @method('PUT')
+                    <div class="form-group">
+                            <label for="pet_name">Pet Name</label>
+                            <input type="text" name="pet_name" id="pet_name" required>
+                        @error('pet_name')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                             <label for="customer_name">Owner</label>
+                            <input type="text" name="customer_name" id="customer_name" required>
+                         @error('customer_name')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="date_of_record">Date</label>
+                        <input type="date" name="date_of_record" id="date_of_record" required>
+                    @error('date_of_record')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="treatment_given">Treatment</label>
+                        <input type="text" name="treatment_given" id="treatment_given" required>
+                    @error('treatment_given')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="veterinarian_name">Veterinarian</label>
+                        <input type="text" name="veterinarian_name" id="veterinarian_name" required>
+                    @error('veterinarian_name')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn-submit">Edit</button>
+                    </div>
+            </form>
+        </div>
+    </div>
+
+</x-app-layout>
